@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Noto Sans CJK SC", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --color-ink-950: #0a0d14;
+  --color-ink-900: #0f141f;
+  --color-ink-800: #161d2c;
+  --color-ink-700: #212b40;
+  --color-ink-600: #2f3b55;
+}
+
+html, body, #root { min-height: 100%; }
+body {
+  @apply bg-ink-950 text-slate-200 font-sans antialiased;
+  background-image:
+    radial-gradient(900px 500px at 85% -10%, rgb(99 102 241 / .16), transparent 60%),
+    radial-gradient(700px 400px at -5% 0%, rgb(34 211 238 / .10), transparent 55%);
+  background-attachment: fixed;
+}
+@keyframes pop { from { opacity: 0; transform: translateY(4px) scale(.98) } to { opacity: 1; transform: none } }
+.pop { animation: pop .15s ease-out }
+@keyframes pulse-bar { 50% { opacity: .55 } }
+.pulse-bar { animation: pulse-bar 1.2s ease-in-out infinite }
