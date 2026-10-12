@@ -13,7 +13,7 @@ export function Chart({ series, max, height = 120, format = (v) => v.toFixed(0),
   const id = useId()
   const W = 600
   const top = max ?? Math.max(1, ...series.flatMap((s) => s.data)) * 1.15
-  const x = (i: number, n: number) => W - (n - 1 - i) * (W / (points - 1))
+  const x = (i: number, n: number) => W - (n - 1 - i) * (W / Math.max(1, points - 1))
   const y = (v: number) => height - (Math.min(v, top) / top) * (height - 6) - 2
   return (
     <div>

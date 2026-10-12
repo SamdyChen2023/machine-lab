@@ -1,0 +1,14 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 24, cache: npm }
+      - run: npm ci
+      - run: npm run build
+      - run: npm test
+      - name: CLI smoke test
+        run: node server/cli.mjs run --profile quick --groups cpu --no-egress --out /tmp/smoke.json && node -e "const r=JSON.parse(require('fs').readFileSync('/tmp/smoke.json'));if(!r.results.length)process.exit(1)"
